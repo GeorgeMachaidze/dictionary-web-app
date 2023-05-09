@@ -50,10 +50,12 @@ function App() {
             />
           </div>
         </div>
-      <input style={{backgroundColor: isDark ? "rgba(31, 31, 31, 1)" : "rgba(244, 244, 244, 1)" }}className="input rounded-md h-12 w-[327px] mr-6 ml-6 br-3" type="text" placeholder="Search for any word…"></input>
+      <input style={{backgroundColor: isDark ? "rgba(31, 31, 31, 1)" : "rgba(244, 244, 244, 1)" }}className="rounded-md h-12 w-[327px] mr-6 ml-6 br-3" type="text" placeholder="Search for any word…"></input>
       </div>
     </>
   );
 }
 
 export default App;
+
+// placeholderis textis shecvla
