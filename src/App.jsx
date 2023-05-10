@@ -1,10 +1,14 @@
 import { useState } from "react";
 import "./App.css";
 import DropdownMenu from "./dropDown.jsx";
+import axios from 'axios';
 
 function App() {
+  const svg = "./src/assets/images/icon-search.svg"
   const [isDark, setIsDark] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [inputValue, setInputValue] = useState('');
+  const [word, setWord] = useState('');
 
   const handleToggle = () => {
     setIsDark(!isDark);
@@ -12,6 +16,18 @@ function App() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+  function handleInputChange(event) {
+    setInputValue(event.target.value);
+  }
+  const getData = async () =>{
+    try{
+      const response = await axios.get("https://api.dictionaryapi.dev/api/v2/entries/en/"+{inputValue});
+      setWord(response.word);
+      setID(response.data.slip.id);
+    } catch (error){
+      console.log(error.response);
+    }
+  }
   return (
     <>
       <div
@@ -50,7 +66,11 @@ function App() {
             />
           </div>
         </div>
-      <input style={{backgroundColor: isDark ? "rgba(31, 31, 31, 1)" : "rgba(244, 244, 244, 1)" }}className="rounded-md h-12 w-[327px] mr-6 ml-6 br-3" type="text" placeholder="Search for any word…"></input>
+        <div className="input flex items-center rounded-md h-12 w-[327px] mr-6 ml-6 br-3" style={{backgroundColor: isDark ? "rgba(31, 31, 31, 1)" : "rgba(244, 244, 244, 1)" }}>
+        <input value={inputValue} onChange={handleInputChange} style={{backgroundColor: isDark ? "rgba(31, 31, 31, 1)" : "rgba(244, 244, 244, 1)" }} className="w-[287px]" type="text" placeholder="Search for any word…"></input>
+        <img src="./src/assets/images/icon-search.svg" alt="" className="w-4 h-4" />
+        </div>
+     <h1>{inputValue}</h1>
       </div>
     </>
   );
