@@ -1,7 +1,5 @@
-import React, { useState } from 'react';
-
-function DropdownMenu({isOpen, isDark, toggleMenu, setIsOpen}) {
-  const [font, setFont] = useState("Sans Serif")
+function DropdownMenu({isOpen, font, setFont, isDark, toggleMenu, setIsOpen}) {
+  
 
   const handleChange = (font) => {
     setFont(font);
