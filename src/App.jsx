@@ -87,6 +87,7 @@ function App() {
             backgroundColor: isDark
               ? "rgba(31, 31, 31, 1)"
               : "rgba(244, 244, 244, 1)",
+              color: isDark ? "white" : "black"
           }}
           className="w-[287px]"
           type="text"
@@ -101,6 +102,7 @@ function App() {
       </div>
       {data !== "" ? <Content
       data={data}
+      isDark={isDark}
       /> : null }
       
       </div>

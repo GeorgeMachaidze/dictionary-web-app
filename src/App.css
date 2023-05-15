@@ -39,7 +39,6 @@ input[type=text]{
   font-size: 20px;
   mix-blend-mode: normal;
 }
-
 .input:focus{
  border: 2px solid;
  border-color: rgba(164, 69, 237, 1);
