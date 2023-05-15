@@ -38,7 +38,7 @@ function App() {
         className="main"
         style={{ backgroundColor: isDark ? "black" : "white", fontFamily: font === "Sans Serif" ? "Inter" :  font === "Serif" ? "Lora" : font === "Mono" ? "Inconsolata" : "" }}
       >
-        <div className="flex justify-between p-6 headAndNav">
+        <div className="flex justify-between p-6 headAndNav cursor-pointer">
           <img src="./src/assets/images/logo.svg" alt="" />
           <DropdownMenu
             isOpen={isOpen}
@@ -89,7 +89,7 @@ function App() {
               : "rgba(244, 244, 244, 1)",
               color: isDark ? "white" : "black"
           }}
-          className="w-[287px]"
+          className="w-[287px] cursor-pointer"
           type="text"
           placeholder="Search for any word…"
         ></input>

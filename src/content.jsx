@@ -49,8 +49,27 @@ function Content({data, isDark}) {
         <h1 className=" text-4 text-gray-600 mb-4">Synonyms</h1>
         <h1 className="ml-5 text-purple-600 font-bold">{data[0].meanings[0].synonyms}</h1>
       </div>
+      <div className="mt-7 flex flex-row">
+        <h1 style={{color: isDark ? "white" : "black" }} className=" font-bold italic text-base ">{data[0].meanings[1].partOfSpeech}</h1>
+        <hr className="mt-3 bg-gray-700 ml-4 w-screen" />
+      </div>
+      <h1 className="mt-[21px] text-4 text-gray-600 mb-4">Meaning</h1>
+      <div className="list-disc custom-dot-color mr-6">
+      {data[0].meanings[1].definitions.map((item,index)=>(
+      <div className="mb-3 grid grid-cols-2" key={index}>
+        <div className="w-1 h-1 mt-2 rounded-full bg-purple-600"></div>
+        <h1 className="ml-[-90%]" style={{color: isDark ? "white" : "black" }}>{item.definition}</h1>
+      </div>
+  ))}
+  <h1 className="text-gray-600">"{data[0].meanings[1].definitions[0].example}"</h1>
+      </div>
+      <hr className="mt-8 bg-gray-700" />
       <div>
-        
+        <h1 className="mt-6 underline text-gray-600">Source</h1>
+        <div style={{color: isDark ? "white" : "black" }} className="flex gap-2 pb-12 justify-center items-center">
+        <a className="mt-2" href={data[0].sourceUrls}>{data[0].sourceUrls}</a>
+        <img src="./src/assets/images/icon-new-window.svg" alt="" />
+        </div>
       </div>
     </div>
   );
