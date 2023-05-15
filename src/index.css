@@ -37,6 +37,9 @@
     .lora{
         font-family: "Lora";
     }
+    .custom-box-shadow {
+      box-shadow: 0px 5px 30px #A445ED;
+    }
 }
 
 

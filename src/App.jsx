@@ -3,6 +3,7 @@ import "./App.css";
 import DropdownMenu from "./dropDown.jsx";
 import Content from "./content.jsx";
 import axios from "axios";
+import Error from "./Error";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -10,20 +11,27 @@ function App() {
   const [font, setFont] = useState("Sans Serif")
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState("");
+  const [empty, setEmpty] = useState(true);
 
   const getData = async () => {
-    try {
-      const response = await axios.get(
-        `https://api.dictionaryapi.dev/api/v2/entries/en/${inputValue}`
-      );
-      setData(response.data);
-    } catch (error) {
-      console.log(error.response);
+    if(inputValue === "" ){
+      setEmpty(false);
+    }else if (inputValue !== ""){
+      setEmpty(true);
     }
+      try {
+        const response = await axios.get(
+          `https://api.dictionaryapi.dev/api/v2/entries/en/${inputValue}`
+        );
+        setData(response.data);
+      } catch (error) {
+        console.log("error");
+      } 
   };
 
   function handleInputChange(event) {
     setInputValue(event.target.value);
+    setEmpty(true)
   }
   const handleToggle = () => {
     setIsDark(!isDark);
@@ -35,7 +43,7 @@ function App() {
   return (
     <>
       <div
-        className="main"
+        className="main h-screen"
         style={{ backgroundColor: isDark ? "black" : "white", fontFamily: font === "Sans Serif" ? "Inter" :  font === "Serif" ? "Lora" : font === "Mono" ? "Inconsolata" : "" }}
       >
         <div className="flex justify-between p-6 headAndNav cursor-pointer">
@@ -72,14 +80,14 @@ function App() {
             />
           </div>
         </div>
-        <div
-        className="input flex items-center rounded-md h-12 w-[327px] mr-6 ml-6 br-3"
+        <div>
+        <div className="input flex items-center rounded-md h-12 w-[327px] mr-6 ml-6 br-3" 
         style={{
           backgroundColor: isDark
             ? "rgba(31, 31, 31, 1)"
             : "rgba(244, 244, 244, 1)",
-        }}
-      >
+            border: empty ?  "none" : "1px solid red"
+        }}>
         <input
           value={inputValue}
           onChange={handleInputChange}
@@ -87,7 +95,7 @@ function App() {
             backgroundColor: isDark
               ? "rgba(31, 31, 31, 1)"
               : "rgba(244, 244, 244, 1)",
-              color: isDark ? "white" : "black"
+              color: isDark ? "white" : "black",
           }}
           className="w-[287px] cursor-pointer"
           type="text"
@@ -97,8 +105,10 @@ function App() {
           src="./src/assets/images/icon-search.svg"
           onClick={getData}
           alt=""
-          className="w-4 h-4"
+          className="w-4 h-4 cursor-pointer"
         />
+        </div>
+        {empty ? (null) : <h1 className="text-red-500 ml-6 mt-2">Whoops, can’t be empty…</h1>}
       </div>
       {data !== "" ? <Content
       data={data}

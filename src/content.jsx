@@ -19,7 +19,7 @@ function Content({data, isDark}) {
       return null;
     }
   }, null);
-
+ 
   return (
     <div className="content ml-6 mr-6 mt-6">
       <div className="flex flex-row justify-between">
@@ -61,7 +61,12 @@ function Content({data, isDark}) {
         <h1 className="ml-[-90%]" style={{color: isDark ? "white" : "black" }}>{item.definition}</h1>
       </div>
   ))}
-  <h1 className="text-gray-600">"{data[0].meanings[1].definitions[0].example}"</h1>
+ {data[0].meanings[1].definitions[0].example  !==  undefined &&  (
+  
+  <h1 className="text-gray-600">
+    "{data[0].meanings[1].definitions[0].example}"
+  </h1>
+)}
       </div>
       <hr className="mt-8 bg-gray-700" />
       <div>

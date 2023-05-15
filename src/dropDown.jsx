@@ -1,3 +1,4 @@
+import "./App.css";
 function DropdownMenu({isOpen, font, setFont, isDark, toggleMenu, setIsOpen}) {
   
 
@@ -5,6 +6,8 @@ function DropdownMenu({isOpen, font, setFont, isDark, toggleMenu, setIsOpen}) {
     setFont(font);
     setIsOpen(!isOpen)
   };
+  let textColor = isDark ? "white" : "black"
+  
 
   return (
     <div className="relative">
@@ -13,22 +16,23 @@ function DropdownMenu({isOpen, font, setFont, isDark, toggleMenu, setIsOpen}) {
           <img onClick={toggleMenu} className="ml-4 w-[12px] h-[6px]"src="./src/assets/images/icon-arrow-down.svg" alt="" />
       </div>
       {isOpen && (
-        <div style={{backgroundColor: isDark ? "black" : "white"}} className="absolute  flex flex-col w-32 ml-12 rounded-md">
-          <button style={{color: isDark ? "white" : "black"}}
-            className="block px-auto py-4 font-bold text-base  leading-6 hover:bg-gray-200"
+        <div style={{backgroundColor: isDark ? "black" : "white"}} 
+        className={`absolute  flex flex-col w-32 ml-12 rounded-md ${isDark ? "custom-box-shadow" : ""}`}>
+          <button 
+           className={`button block px-auto py-4 font-bold text-base leading-6 hover:text-purple-600 ${isDark ? "text-white" : "text-black"}`}
             onClick={() => handleChange('Sans Serif')}
           >
             Sans Serif
           </button>
-          <button style={{color: isDark ? "white" : "black"}}
-            className="block px-4 py-2 font-bold text-base leading-6 hover:bg-gray-200"
-            onClick={() => handleChange('Serif')}
+          <button 
+           className={`button block px-auto py-4 font-bold text-base leading-6 hover:text-purple-600 ${isDark ? "text-white" : "text-black"}`}
+           onClick={() => handleChange('Serif')}
           >
             Serif
           </button>
-          <button style={{color: isDark ? "white" : "black"}}
-            className="block px-4 py-2 font-bold text-base leading-6 hover:bg-gray-200"
-            onClick={() => handleChange('Mono')}
+          <button 
+           className={`button block px-auto py-4 font-bold text-base leading-6 hover:text-purple-600 ${isDark ? "text-white" : "text-black"}`}
+           onClick={() => handleChange('Mono')}
           >
             Mono
           </button>
