@@ -48,6 +48,14 @@ function App() {
     setIsOpen(!isOpen);
   };
 
+
+const handleKeyDown = (event) => {
+  if (event.key === 'Enter') {
+    getData();
+  }
+};
+
+
   return (
     <>
       <div
@@ -109,6 +117,7 @@ function App() {
               color: isDark ? "white" : "black",
           }}
           className="w-[287px] md:w-[655px] lg:w-[696px] cursor-pointer"
+          onKeyDown={handleKeyDown}
           type="text"
           placeholder="Search for any word…"
         ></input>

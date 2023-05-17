@@ -31,7 +31,7 @@ function Content({ data, isDark }) {
           >
             {data[0].word}
           </h1>
-          <h1 className=" text-purple-600 text-base sm:text-lg mt-4">
+          <h1 className=" text-purple-600 text-base sm:text-lg lg:mt-8 md:mt-8  ">
             {data[0].phonetic}
           </h1>
         </div>
