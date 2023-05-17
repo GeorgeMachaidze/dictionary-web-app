@@ -6,7 +6,7 @@ function DropdownMenu({isOpen, font, setFont, isDark, toggleMenu, setIsOpen}) {
     setFont(font);
     setIsOpen(!isOpen)
   };
-  let textColor = isDark ? "white" : "black"
+  
   
 
   return (

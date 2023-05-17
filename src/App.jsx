@@ -12,13 +12,13 @@ function App() {
   const [inputValue, setInputValue] = useState("");
   const [data, setData] = useState("");
   const [empty, setEmpty] = useState(true);
+  const [error, setError] = useState(false);
 
   const getData = async () => {
     if(inputValue === "" ){
       setEmpty(false);
-    }else if (inputValue !== ""){
+    }else {
       setEmpty(true);
-    }
       try {
         const response = await axios.get(
           `https://api.dictionaryapi.dev/api/v2/entries/en/${inputValue}`
@@ -26,7 +26,11 @@ function App() {
         setData(response.data);
       } catch (error) {
         console.log("error");
+        setError(true);
+        setData("")
       } 
+    }
+      
   };
 
   function handleInputChange(event) {
@@ -43,11 +47,13 @@ function App() {
   return (
     <>
       <div
-        className="main h-screen"
+        className="main min-h-screen"
         style={{ backgroundColor: isDark ? "black" : "white", fontFamily: font === "Sans Serif" ? "Inter" :  font === "Serif" ? "Lora" : font === "Mono" ? "Inconsolata" : "" }}
       >
-        <div className="flex justify-between p-6 headAndNav cursor-pointer">
+        <div className="flex justify-between p-6 headAndNav cursor-pointer md:p-10 lg:pl-[350px] lg:pr-[350px]">
+
           <img src="./src/assets/images/logo.svg" alt="" />
+          <div className="flex">
           <DropdownMenu
             isOpen={isOpen}
             isDark={isDark}
@@ -79,9 +85,10 @@ function App() {
               alt=""
             />
           </div>
+          </div>
         </div>
         <div>
-        <div className="input flex items-center rounded-md h-12 w-[327px] mr-6 ml-6 br-3" 
+        <div className="input flex items-center justify-between rounded-md h-12 min-w-screen mr-6 ml-6 br-3 lg:ml-[350px] lg:mr-[350px]" 
         style={{
           backgroundColor: isDark
             ? "rgba(31, 31, 31, 1)"
@@ -97,7 +104,7 @@ function App() {
               : "rgba(244, 244, 244, 1)",
               color: isDark ? "white" : "black",
           }}
-          className="w-[287px] cursor-pointer"
+          className="w-[287px] md:w-[655px] lg:w-[696px] cursor-pointer"
           type="text"
           placeholder="Search for any word…"
         ></input>
@@ -105,15 +112,15 @@ function App() {
           src="./src/assets/images/icon-search.svg"
           onClick={getData}
           alt=""
-          className="w-4 h-4 cursor-pointer"
+          className="w-4 h-4 mr-4 cursor-pointer"
         />
         </div>
-        {empty ? (null) : <h1 className="text-red-500 ml-6 mt-2">Whoops, can’t be empty…</h1>}
+        {empty ? (null) : <h1 className="text-red-500 ml-6 mt-2 lg:pl-[350px] ">Whoops, can’t be empty…</h1>}
       </div>
       {data !== "" ? <Content
       data={data}
       isDark={isDark}
-      /> : null }
+      /> : error && empty && <Error isDark={isDark} /> }
       
       </div>
     </>
