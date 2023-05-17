@@ -1,4 +1,7 @@
 import "./App.css";
+import arrow from "./assets/images/icon-arrow-down.svg";
+
+
 function DropdownMenu({isOpen, font, setFont, isDark, toggleMenu, setIsOpen}) {
   
 
@@ -13,7 +16,7 @@ function DropdownMenu({isOpen, font, setFont, isDark, toggleMenu, setIsOpen}) {
     <div className="relative">
       <div className="drop flex justify-between items-center mt-2 ml-[75px]">
           <h1 style={{color: isDark ? "white" : "black"}}className='inter font-bold text-base leading-6'>{font}</h1>
-          <img onClick={toggleMenu} className="ml-4 w-[12px] h-[6px]"src="./src/assets/images/icon-arrow-down.svg" alt="" />
+          <img onClick={toggleMenu} className="ml-4 w-[12px] h-[6px] cursor-pointer"src={arrow} alt="" />
       </div>
       {isOpen && (
         <div style={{backgroundColor: isDark ? "black" : "white"}} 

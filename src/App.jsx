@@ -4,6 +4,10 @@ import DropdownMenu from "./dropDown.jsx";
 import Content from "./content.jsx";
 import axios from "axios";
 import Error from "./Error";
+import logo from "./assets/images/logo.svg";
+import moon from "./assets/images/icon-moon.svg";
+import moonDark from "./assets/images/icon-moon-dark.svg";
+import searchIcon from "./assets/images/icon-search.svg";
 
 function App() {
   const [isDark, setIsDark] = useState(false);
@@ -50,9 +54,9 @@ function App() {
         className="main min-h-screen"
         style={{ backgroundColor: isDark ? "black" : "white", fontFamily: font === "Sans Serif" ? "Inter" :  font === "Serif" ? "Lora" : font === "Mono" ? "Inconsolata" : "" }}
       >
-        <div className="flex justify-between p-6 headAndNav cursor-pointer md:p-10 lg:pl-[350px] lg:pr-[350px]">
+        <div className="flex justify-between p-6 headAndNav  md:p-10 lg:pl-[350px] lg:pr-[350px]">
 
-          <img src="./src/assets/images/logo.svg" alt="" />
+          <img src={logo} alt="" />
           <div className="flex">
           <DropdownMenu
             isOpen={isOpen}
@@ -64,7 +68,7 @@ function App() {
           />
           <hr className="ml-4 border-l-2 border-rgba(233, 233, 233, 1)-500 h-10 transform-rotate-90"></hr>
           <div className="sliderAndIcon flex justify-center items-center">
-            <label className="ml-4 toggle-switch">
+            <label className="ml-4 toggle-switch cursor-pointer">
               <input type="checkbox" checked={isDark} onChange={handleToggle} />
               <span
                 className={`toggle-slider`}
@@ -79,8 +83,8 @@ function App() {
               className="ml-3"
               src={
                 isDark
-                  ? "./src/assets/images/icon-moon-dark.svg"
-                  : "./src/assets/images/icon-moon.svg"
+                  ? moonDark
+                  : moon
               }
               alt=""
             />
@@ -109,7 +113,7 @@ function App() {
           placeholder="Search for any word…"
         ></input>
         <img
-          src="./src/assets/images/icon-search.svg"
+          src={searchIcon}
           onClick={getData}
           alt=""
           className="w-4 h-4 mr-4 cursor-pointer"

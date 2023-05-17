@@ -1,4 +1,6 @@
 import { useRef } from "react";
+import playIcon from "./assets/images/icon-play.svg";
+import sourceIcon from "./assets/images/icon-new-window.svg";
 
 function Content({ data, isDark }) {
   const audioRef = useRef(null);
@@ -33,13 +35,13 @@ function Content({ data, isDark }) {
             {data[0].phonetic}
           </h1>
         </div>
-        <div className="flex">
+        <div className="flex cursor-pointer">
           {audioSrc && <audio ref={audioRef} src={audioSrc}></audio>}
           {audioSrc && (
             <img
               className="w-12 h-12 "
               onClick={playAudio}
-              src="./src/assets/images/icon-play.svg"
+              src={playIcon}
             ></img>
           )}
         </div>
@@ -123,12 +125,12 @@ function Content({ data, isDark }) {
         <h1 className="mt-6 underline text-gray-600">Source</h1>
         <div
           style={{ color: isDark ? "white" : "black" }}
-          className="flex gap-2 pb-12 justify-center items-center"
+          className="flex gap-2 pb-12  items-center"
         >
           <a className="mt-2" href={data[0].sourceUrls}>
             {data[0].sourceUrls}
           </a>
-          <img src="./src/assets/images/icon-new-window.svg" alt="" />
+          <img src={sourceIcon} alt="" />
         </div>
       </div>
     </div>
